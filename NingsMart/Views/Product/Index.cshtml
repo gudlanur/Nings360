@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NingsMart.Models.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<script src="jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qauntity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qauntity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                    <input type="button" value="Select" id="btnselect" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p> Total Items</p>
+<input type="text" id="totalitem" />
+<br />
+<input type="button" value="Payment" id="btnpayment"  style="color:royalblue"/>
+<script>
+    var itemcount = 0;
+
+    $("#btnselect").click(function () {
+        itemcount++;
+        $("#totalitem").val(itemcount);
+    });
+
+    $("#btnpayment").click(function () {
+
+        if ($("#totalitem").val() == 0) {
+
+            alert("please select items");
+        }
+        else {
+            alert("payment is succedeed");
+
+        }
+
+    });
+</script>
